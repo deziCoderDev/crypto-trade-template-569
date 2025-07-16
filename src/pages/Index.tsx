@@ -83,7 +83,7 @@ const Index = () => {
           transition={{ delay: 0.6 }}
           className="relative mx-auto max-w-5xl mt-20"
         >
-          <div className="glass rounded-xl overflow-hidden">
+          <div className="dashboard-card rounded-xl overflow-hidden shadow-2xl">
             <img
               src="/lovable-uploads/c32c6788-5e4a-4fee-afee-604b03113c7f.png"
               alt="CryptoTrade Dashboard"
@@ -117,7 +117,7 @@ const Index = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="glass backdrop-blur-xl border rounded-3xl p-8 md:p-16 text-center relative z-10 max-w-4xl mx-auto"
+          className="dashboard-card backdrop-blur-xl border rounded-3xl p-8 md:p-16 text-center relative z-10 max-w-4xl mx-auto shadow-2xl"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}

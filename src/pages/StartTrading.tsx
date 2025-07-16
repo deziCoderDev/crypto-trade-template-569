@@ -44,7 +44,7 @@ const StartTrading = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:col-span-1"
           >
-            <Card className="glass">
+            <Card className="dashboard-card">
               <CardHeader>
                 <CardTitle className="text-2xl">Sign In</CardTitle>
                 <CardDescription>
@@ -87,10 +87,10 @@ const StartTrading = () => {
             </Card>
 
             {/* Security Features */}
-            <Card className="glass mt-6">
+            <Card className="stats-card mt-6">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Lock className="w-5 h-5" />
+                  <Lock className="w-5 h-5 text-primary" />
                   Secure Trading
                 </CardTitle>
               </CardHeader>
@@ -119,24 +119,24 @@ const StartTrading = () => {
             className="lg:col-span-2 space-y-6"
           >
             <Tabs defaultValue="markets" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 glass">
+              <TabsList className="grid w-full grid-cols-3 dashboard-card">
                 <TabsTrigger value="markets">Live Markets</TabsTrigger>
                 <TabsTrigger value="features">Features</TabsTrigger>
                 <TabsTrigger value="analytics">Analytics</TabsTrigger>
               </TabsList>
               
               <TabsContent value="markets" className="mt-6">
-                <Card className="glass">
+                <Card className="chart-container">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <TrendingUp className="w-5 h-5" />
+                      <TrendingUp className="w-5 h-5 text-primary" />
                       Market Overview
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       {cryptoData.map((crypto) => (
-                        <div key={crypto.symbol} className="flex items-center justify-between p-4 glass-hover rounded-lg">
+                        <div key={crypto.symbol} className="flex items-center justify-between p-4 market-card rounded-lg">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                               <span className="font-bold text-primary">{crypto.symbol}</span>
@@ -161,10 +161,10 @@ const StartTrading = () => {
               
               <TabsContent value="features" className="mt-6">
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Card className="glass">
+                  <Card className="stats-card">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
-                        <BarChart3 className="w-5 h-5" />
+                        <BarChart3 className="w-5 h-5 text-primary" />
                         Advanced Charts
                       </CardTitle>
                     </CardHeader>
@@ -175,10 +175,10 @@ const StartTrading = () => {
                     </CardContent>
                   </Card>
                   
-                  <Card className="glass">
+                  <Card className="stats-card">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
-                        <DollarSign className="w-5 h-5" />
+                        <DollarSign className="w-5 h-5 text-primary" />
                         Low Fees
                       </CardTitle>
                     </CardHeader>
@@ -192,10 +192,10 @@ const StartTrading = () => {
               </TabsContent>
               
               <TabsContent value="analytics" className="mt-6">
-                <Card className="glass">
+                <Card className="chart-container">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <PieChart className="w-5 h-5" />
+                      <PieChart className="w-5 h-5 text-primary" />
                       Portfolio Analytics
                     </CardTitle>
                   </CardHeader>
