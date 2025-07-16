@@ -2,10 +2,14 @@ import { useState, useEffect } from "react";
 import { Command, Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { ThemeToggle } from "./ThemeToggle";
+import { Link, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,50 +44,71 @@ const Navigation = () => {
   };
 
   const navItems = [
-    { name: "Features", href: "#features", onClick: () => scrollToSection('features') },
-    { name: "Prices", href: "#pricing", onClick: () => scrollToSection('pricing') },
-    { name: "Testimonials", href: "#testimonials", onClick: () => scrollToSection('testimonials') },
+    { name: "Home", href: "/", type: "link" },
+    { name: "Features", href: "#features", onClick: () => scrollToSection('features'), type: "scroll" },
+    { name: "Pricing", href: "#pricing", onClick: () => scrollToSection('pricing'), type: "scroll" },
+    { name: "Markets", href: "/start-trading", type: "link" },
   ];
 
   return (
     <header
-      className={`fixed top-3.5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-full ${
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-2xl ${
         isScrolled 
-          ? "h-14 bg-[#1B1B1B]/40 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-2xl" 
-          : "h-14 bg-[#1B1B1B] w-[95%] max-w-3xl"
+          ? "h-16 glass backdrop-blur-xl scale-95 w-[90%] max-w-4xl" 
+          : "h-16 glass w-[95%] max-w-5xl"
       }`}
     >
       <div className="mx-auto h-full px-6">
         <nav className="flex items-center justify-between h-full">
-          <div className="flex items-center gap-2">
-            <Command className="w-5 h-5 text-primary" />
-            <span className="font-bold text-base">CryptoTrade</span>
-          </div>
+          <Link to="/" className="flex items-center gap-2">
+            <Command className="w-6 h-6 text-primary" />
+            <span className="font-bold text-lg">CryptoTrade</span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (item.onClick) {
-                    item.onClick();
-                  }
-                }}
-                className="text-sm text-muted-foreground hover:text-foreground transition-all duration-300"
-              >
-                {item.name}
-              </a>
+              item.type === "link" ? (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`text-sm font-medium transition-all duration-300 hover:text-primary ${
+                    location.pathname === item.href ? 'text-primary' : 'text-muted-foreground'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (item.onClick && isHomePage) {
+                      item.onClick();
+                    }
+                  }}
+                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300"
+                >
+                  {item.name}
+                </a>
+              )
             ))}
-            <Button 
-              onClick={() => scrollToSection('cta')}
-              size="sm"
-              className="button-gradient"
-            >
-              Start Trading
-            </Button>
+            
+            <ThemeToggle />
+            
+            <div className="flex items-center gap-3">
+              <Link to="/start-trading">
+                <Button variant="outline" size="sm" className="glass glass-hover">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/create-account">
+                <Button size="sm" className="button-gradient">
+                  Create Account
+                </Button>
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Navigation */}
@@ -94,33 +119,53 @@ const Navigation = () => {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="bg-[#1B1B1B]">
-                <div className="flex flex-col gap-4 mt-8">
+              <SheetContent className="glass backdrop-blur-xl">
+                <div className="flex flex-col gap-6 mt-8">
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold">Navigation</span>
+                    <ThemeToggle />
+                  </div>
+                  
                   {navItems.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="text-lg text-muted-foreground hover:text-foreground transition-colors"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setIsMobileMenuOpen(false);
-                        if (item.onClick) {
-                          item.onClick();
-                        }
-                      }}
-                    >
-                      {item.name}
-                    </a>
+                    item.type === "link" ? (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className="text-lg font-medium hover:text-primary transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="text-lg font-medium text-muted-foreground hover:text-primary transition-colors"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsMobileMenuOpen(false);
+                          if (item.onClick && isHomePage) {
+                            item.onClick();
+                          }
+                        }}
+                      >
+                        {item.name}
+                      </a>
+                    )
                   ))}
-                  <Button 
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      scrollToSection('cta');
-                    }}
-                    className="button-gradient mt-4"
-                  >
-                    Start Trading
-                  </Button>
+                  
+                  <div className="flex flex-col gap-3 mt-4">
+                    <Link to="/start-trading" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button variant="outline" className="w-full glass glass-hover">
+                        Sign In
+                      </Button>
+                    </Link>
+                    <Link to="/create-account" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button className="w-full button-gradient">
+                        Create Account
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
