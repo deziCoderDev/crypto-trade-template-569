@@ -14,15 +14,14 @@ const Index = () => {
   return (
     <div className="min-h-screen dashboard-gradient text-foreground">
       <Navigation />
-      
+
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="relative container px-4 pt-32 pb-20"
       >
-        
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -34,7 +33,7 @@ const Index = () => {
             Professional-Grade Trading Platform
           </span>
         </motion.div>
-        
+
         <div className="max-w-5xl relative z-10">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-left">
             <span className="text-gradient">
@@ -45,18 +44,21 @@ const Index = () => {
               <TextGenerateEffect words="Made Simple & Secure" />
             </span>
           </h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl text-left leading-relaxed"
           >
-            Experience the future of cryptocurrency trading with our cutting-edge platform. 
-            Advanced charting tools, real-time market data, and institutional-grade security—all designed for{" "}
-            <span className="text-primary font-semibold">both beginners and professionals.</span>
+            Experience the future of cryptocurrency trading with our
+            cutting-edge platform. Advanced charting tools, real-time market
+            data, and institutional-grade security—all designed for{" "}
+            <span className="text-primary font-semibold">
+              both beginners and professionals.
+            </span>
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -70,7 +72,11 @@ const Index = () => {
               </Button>
             </Link>
             <Link to="/start-trading">
-              <Button size="lg" variant="outline" className="glass glass-hover h-12 px-8">
+              <Button
+                size="lg"
+                variant="outline"
+                className="glass glass-hover h-12 px-8"
+              >
                 Start Trading
               </Button>
             </Link>
@@ -85,7 +91,7 @@ const Index = () => {
         >
           <div className="dashboard-card rounded-xl overflow-hidden shadow-2xl">
             <img
-              src="/lovable-uploads/c32c6788-5e4a-4fee-afee-604b03113c7f.png"
+              src="/dezi-uploads/c32c6788-5e4a-4fee-afee-604b03113c7f.png"
               alt="CryptoTrade Dashboard"
               className="w-full h-auto"
             />
@@ -125,12 +131,12 @@ const Index = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Ready to Transform Your 
+              Ready to Transform Your
               <span className="text-gradient"> Trading Experience?</span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-              Join over 500,000 traders worldwide who trust our platform for secure, 
-              fast, and professional cryptocurrency trading.
+              Join over 500,000 traders worldwide who trust our platform for
+              secure, fast, and professional cryptocurrency trading.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/create-account">
@@ -140,7 +146,11 @@ const Index = () => {
                 </Button>
               </Link>
               <Link to="/start-trading">
-                <Button size="lg" variant="outline" className="glass glass-hover h-14 px-8 text-lg">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="glass glass-hover h-14 px-8 text-lg"
+                >
                   Explore Platform
                 </Button>
               </Link>
